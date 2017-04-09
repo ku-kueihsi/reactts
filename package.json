@@ -1,0 +1,32 @@
+{
+  "name": "reactts",
+  "version": "1.0.0",
+  "description": "react+typescript testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ku-kueihsi/reactts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ku-kueihsi/reactts/issues"
+  },
+  "homepage": "https://github.com/ku-kueihsi/reactts#readme",
+  "dependencies": {
+    "@types/react": "^15.0.21",
+    "@types/react-dom": "^0.14.23",
+    "react": "^15.5.3",
+    "react-dom": "^15.5.3"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.1.2",
+    "source-map-loader": "^0.2.1",
+    "typescript": "^2.2.2",
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
+  }
+}
