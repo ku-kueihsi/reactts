@@ -101,6 +101,10 @@ export interface JsonEditorProps { }
 export class JsonEditor extends React.Component<JsonEditorProps, {}> {
   editor: JSONEditor
 
+  handleClick() {
+    console.log(this.editor.get());
+  }
+
   constructor() {
     super();
   }
@@ -117,6 +121,7 @@ export class JsonEditor extends React.Component<JsonEditorProps, {}> {
   render() {
     return (
       <div>
+        <button onClick={() => this.handleClick()}>console log</button>
         <link href="../../node_modules/jsoneditor/dist/jsoneditor.css" rel="stylesheet" type="text/css"></link>
         <div ref="editor"></div >
       </div>);
