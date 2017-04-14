@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react'
+import JSONEditor, { JSONEditorOptions } from 'jsoneditor'
 
 export interface HelloProps { compiler: string; framework: string; }
 
@@ -31,10 +32,6 @@ export interface SquareProperties {
   value: string;
   onClick: () => void;
 }
-
-// export interface SquareStates {
-//   value: string;
-// }
 
 export class Square extends React.Component<SquareProperties, {}> {
   constructor() {
@@ -96,5 +93,42 @@ export class Board extends React.Component<{}, BoardStates> {
         </div>
       </div>
     );
+  }
+}
+
+export interface JsonEditorProps { }
+
+export class JsonEditor extends React.Component<JsonEditorProps, {}> {
+  editor: JSONEditor
+
+  constructor() {
+    super();
+  }
+
+  componentDidMount() {
+    let treeOptions: JSONEditorOptions = {
+      mode: 'tree',
+      modes: ['code', 'tree']
+    };
+
+    this.editor = new JSONEditor(this.refs.editor as HTMLElement, treeOptions);
+  }
+
+  render() {
+    return (
+      <div>
+        <link href="../../node_modules/jsoneditor/dist/jsoneditor.css" rel="stylesheet" type="text/css"></link>
+        <div ref="editor"></div >
+      </div>);
+  }
+}
+
+export class ExampleDiv extends React.Component<{}, {}> {
+  render() {
+    return (
+      <div>
+        <Board />
+        <JsonEditor />
+      </div>);
   }
 }

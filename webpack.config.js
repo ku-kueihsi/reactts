@@ -1,5 +1,11 @@
+var webpack = require("webpack");
+
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: {
+    app: "./src/index.tsx",
+    vendor: ["react", "react-dom", "jsoneditor"],
+  },
+
   output: {
     publicPath: "/dist/",
     filename: "bundle.js",
@@ -11,7 +17,10 @@ module.exports = {
 
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: [".ts", ".tsx", ".js", ".json"],
+    alias: {
+      'jseditor$': 'jsoneditor/dist/jsoneditor.min.js'
+    }
   },
 
   module: {
@@ -27,16 +36,19 @@ module.exports = {
         enforce: "pre",
         test: /\.js$/,
         loader: "source-map-loader"
-      }
+      },
+
+      { test: /\.css$/, loader: "style-loader!css-loader" }
     ]
   },
 
-  // When importing a module whose path matches one of the following, just
-  // assume a corresponding global variable exists and use that instead.
-  // This is important because it allows us to avoid bundling all of our
-  // dependencies, which allows browsers to cache those libraries between builds.
-  externals: {
-    "react": "React",
-    "react-dom": "ReactDOM"
-  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'vendor.bundle.js'
+    }),
+    new webpack.IgnorePlugin(/regenerator|nodent|js\-beautify/, /ajv/),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  ]
 };

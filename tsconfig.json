@@ -2,13 +2,15 @@
   "compilerOptions": {
     "jsx": "react",
     "noImplicitAny": true,
-    "module": "commonjs",
     "outDir": "./dist/",
     "sourceMap": true,
     "strictNullChecks": true,
-    "target": "es5"
+    "target": "es2015"
   },
   "include": [
     "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
